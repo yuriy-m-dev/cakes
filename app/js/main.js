@@ -113,6 +113,34 @@ $(function(){
             }
         });
     });
+    $('.header__menu-link').on('click', function() {
+        $('.header__menu').css('display', 'none');
+        $(".hamburger").removeClass('is-active');
+    });
+
+    // Перемещение элемента
+    $(window).on('resize', function(){
+        let win = $(this);
+        if (win.width() <= 450) {
+            $('.about__social').detach().appendTo('.about__inner');
+        } else {
+            $('.about__social').detach().appendTo('.about__info');
+        }
+
+        let win_2 = $(this);
+        if (win_2.width() <= 450) {
+            $('.about__info-title').detach().appendTo('.about__inner');
+        } else {
+            $('.about__info-title').detach().prependTo('.about__info');
+        }
+
+        let win_3 = $(this);
+        if (win_3.width() <= 900) {
+            $('.footer-top__social').detach().appendTo('.footer-down__inner');
+        } else {
+            $('.footer-top__social').detach().appendTo('.footer-top__inner');
+        }
+    });
 });
 
 // Плавный скролл якоря
@@ -129,28 +157,18 @@ const anchors = document.querySelectorAll('a[href*="#"]');
         });
     };
 
-// Перемещение элемента
-$(window).on('resize', function(){
-    let win = $(this);
-    if (win.width() <= 450) {
-        $('.about__social').detach().appendTo('.about__inner');
-    } else {
-        $('.about__social').detach().appendTo('.about__info');
-    }
 
-    let win_2 = $(this);
-    if (win_2.width() <= 450) {
-        $('.about__info-title').detach().appendTo('.about__inner');
-    } else {
-        $('.about__info-title').detach().prependTo('.about__info');
-    }
 
-    let win_3 = $(this);
-    if (win_3.width() <= 900) {
-        $('.footer-top__social').detach().appendTo('.footer-down__inner');
-    } else {
-        $('.footer-top__social').detach().appendTo('.footer-top__inner');
+// fixed header
+    const header = document.querySelector('.header'),
+          cake = document.querySelector('.cake');
+    window.onscroll = () => {
+        if(window.pageYOffset > 500) {
+            header.classList.add('active');
+            cake.classList.add('active');
+        } else {
+            header.classList.remove('active');
+            cake.classList.remove('active');
+        }
     }
-});
-
 
