@@ -114,8 +114,11 @@ $(function(){
         });
     });
     $('.header__menu-link').on('click', function() {
-        $('.header__menu').css('display', 'none');
-        $(".hamburger").removeClass('is-active');
+        let win = $(window);
+        if (win.width() <= 1000) {
+            $(".hamburger").removeClass('is-active');
+            $('.header__menu').css('display', 'none');
+        }
     });
 
     // Перемещение элемента
